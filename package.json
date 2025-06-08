@@ -1,17 +1,17 @@
 {
   "name": "@kudojs/toolbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-"scripts": {
-  "build": "rollup -c",
-  "prepare": "npm run build",
-  "release": "standard-version"
-},
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "npm run build",
+    "release": "standard-version"
+  },
   "author": "Ismail Salah",
   "license": "MIT",
   "description": "A lightweight React utility components library inspired by Solid.js. Includes components like Switch, Match, Show, Dynamic, and For — enabling expressive and declarative UI patterns in React.",
