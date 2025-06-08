@@ -8,6 +8,7 @@ import
 	ReactElement,
 	type ReactNode
 } from 'react'
+import {unwrap} from './unwrap-signals'
 
 export const Show: FC<{
 	children: JSX.Element | ReactNode | string
@@ -17,12 +18,15 @@ export const Show: FC<{
 		| number
 		| ReactElement<unknown, string | JSXElementConstructor<any>>
 		| undefined
+		| Signal<boolean | string | number | ReactElement | undefined>
 	fallback?: JSX.Element | string | null | ReactNode
 }> = ({ children, when, fallback }) => {
+	const unwrappedWhen = unwrap(when);
+
 	return (
 		<Fragment>
-			{when && children}
-			{!when && fallback}
+			{unwrappedWhen && children}
+			{!unwrappedWhen && fallback}
 		</Fragment>
 	)
 }

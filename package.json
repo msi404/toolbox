@@ -30,6 +30,8 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@preact/signals-core": "^1.9.0",
+    "@preact/signals-react": "^3.2.0",
     "tslib": "^2.8.1"
   }
 }

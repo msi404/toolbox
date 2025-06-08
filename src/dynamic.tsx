@@ -7,27 +7,38 @@ import React, {
 	type ReactElement
 } from 'react'
 
-interface DynamicProps<T = any> {
+import { unwrap } from './unwrap-signals'
+
+const unwrappedProps = Object.fromEntries(
+	Object.entries(props).map(([key, value]) => [key, unwrap(value)])
+ );
+ 
+
+ interface DynamicProps<T = any> {
 	component:
 		| ComponentType<T>
 		| keyof JSX.IntrinsicElements
 		| ReactElement
 		| string
-		| null
 		| ReactElement<unknown, string | JSXElementConstructor<any>>
-		| undefined // Accepts React components or HTML tags
-	[key: string]: any // Allow additional props
+		| null
+		| undefined;
+	[key: string]: any;
 }
 
 export const Dynamic = <T,>({
 	component: Component,
 	...props
 }: DynamicProps<T>): JSX.Element | null => {
-	if (!Component) return null
+	if (!Component) return null;
+
+	const unwrappedProps = Object.fromEntries(
+		Object.entries(props).map(([key, value]) => [key, unwrap(value)])
+	);
 
 	return isValidElement(Component) ? (
-		React.cloneElement(Component, props)
+		React.cloneElement(Component, unwrappedProps)
 	) : (
-		<Component {...(props as T)} />
-	)
-}
+		<Component {...(unwrappedProps as T)} />
+	);
+};

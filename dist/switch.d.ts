@@ -1,6 +1,6 @@
 import { FC, JSXElementConstructor, ReactElement, ReactNode } from 'react';
 interface MatchProps {
-    when: boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined;
+    when: boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined | any;
     children: ReactNode;
 }
 export declare const Match: FC<MatchProps>;
