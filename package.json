@@ -7,9 +7,11 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "rollup -c"
-  },
+"scripts": {
+  "build": "rollup -c",
+  "prepare": "npm run build",
+  "release": "standard-version"
+},
   "author": "Ismail Salah",
   "license": "MIT",
   "description": "A lightweight React utility components library inspired by Solid.js. Includes components like Switch, Match, Show, Dynamic, and For — enabling expressive and declarative UI patterns in React.",
@@ -24,6 +26,7 @@
     "@types/rollup-plugin-peer-deps-external": "^2.2.5",
     "rollup": "^4.42.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "standard-version": "^9.5.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
