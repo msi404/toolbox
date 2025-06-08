@@ -12,7 +12,7 @@
   },
   "author": "Ismail Salah",
   "license": "MIT",
-  "description": "",
+  "description": "A lightweight React utility components library inspired by Solid.js. Includes components like Switch, Match, Show, Dynamic, and For — enabling expressive and declarative UI patterns in React.",
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
