@@ -12,6 +12,17 @@
     "prepare": "npm run build",
     "release": "standard-version"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msi404/toolbox.git"
+  },
+  "keywords": [
+    "react",
+    "utils",
+    "components",
+    "ui",
+    "signals"
+  ],
   "author": "Ismail Salah",
   "license": "MIT",
   "description": "A lightweight React utility components library inspired by Solid.js. Includes components like Switch, Match, Show, Dynamic, and For — enabling expressive and declarative UI patterns in React.",
