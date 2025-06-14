@@ -1,44 +1,34 @@
 //@ts-nocheck
 import React, {
 	type ComponentType,
+	type ReactElement,
 	isValidElement,
 	type JSX,
-	JSXElementConstructor,
-	type ReactElement
+	JSXElementConstructor
 } from 'react'
 
-import { unwrap } from './unwrap-signals'
-
-const unwrappedProps = Object.fromEntries(
-	Object.entries(props).map(([key, value]) => [key, unwrap(value)])
- );
- 
-
- interface DynamicProps<T = any> {
+interface DynamicProps<T = any> {
 	component:
 		| ComponentType<T>
 		| keyof JSX.IntrinsicElements
 		| ReactElement
 		| string
-		| ReactElement<unknown, string | JSXElementConstructor<any>>
 		| null
-		| undefined;
-	[key: string]: any;
+		| ReactElement<unknown, string | JSXElementConstructor<any>>
+		| undefined // Accepts React components or HTML tags
+	[key: string]: any // Allow additional props
 }
 
 export const Dynamic = <T,>({
 	component: Component,
 	...props
 }: DynamicProps<T>): JSX.Element | null => {
-	if (!Component) return null;
-
-	const unwrappedProps = Object.fromEntries(
-		Object.entries(props).map(([key, value]) => [key, unwrap(value)])
-	);
+	if (!Component) return null
 
 	return isValidElement(Component) ? (
-		React.cloneElement(Component, unwrappedProps)
+		React.cloneElement(Component, props)
 	) : (
-		<Component {...(unwrappedProps as T)} />
-	);
-};
+		// @ts-expect-error
+		<Component {...(props as T)} />
+	)
+}

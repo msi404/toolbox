@@ -1,14 +1,12 @@
 //@ts-nocheck
-import
-	{
+import {
+	type JSX,
 	type FC,
 	Fragment,
-	type JSX,
-	JSXElementConstructor,
+	type ReactNode,
 	ReactElement,
-	type ReactNode
+	JSXElementConstructor
 } from 'react'
-import {unwrap} from './unwrap-signals'
 
 export const Show: FC<{
 	children: JSX.Element | ReactNode | string
@@ -18,15 +16,12 @@ export const Show: FC<{
 		| number
 		| ReactElement<unknown, string | JSXElementConstructor<any>>
 		| undefined
-		| Signal<boolean | string | number | ReactElement | undefined>
 	fallback?: JSX.Element | string | null | ReactNode
 }> = ({ children, when, fallback }) => {
-	const unwrappedWhen = unwrap(when);
-
 	return (
 		<Fragment>
-			{unwrappedWhen && children}
-			{!unwrappedWhen && fallback}
+			{when && children}
+			{!when && fallback}
 		</Fragment>
 	)
 }

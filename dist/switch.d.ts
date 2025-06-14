@@ -1,6 +1,6 @@
-import { FC, JSXElementConstructor, ReactElement, ReactNode } from 'react';
+import { ReactNode, FC, ReactElement, JSXElementConstructor } from 'react';
 interface MatchProps {
-    when: boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined | any;
+    when: boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined;
     children: ReactNode;
 }
 export declare const Match: FC<MatchProps>;

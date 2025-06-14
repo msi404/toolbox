@@ -8,19 +8,20 @@ export default {
   output: [
     {
       file: 'dist/index.cjs.js',
-      format: 'cjs',
+      format: 'esm',
       sourcemap: true
     },
     {
       file: 'dist/index.esm.js',
-      format: 'esm',
-      sourcemap: true
-    }
+      format: 'cjs',
+      sourcemap: true,
+      exports: 'named',    }
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' })
-  ]
+  ],
+  external: ['react', 'react-dom'],
 };
